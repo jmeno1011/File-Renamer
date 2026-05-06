@@ -1,0 +1,467 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap");
+
+:root {
+  color-scheme: light;
+  --bg: #f5f7f8;
+  --panel: #ffffff;
+  --panel-strong: #eef3f1;
+  --line: #d8e0dd;
+  --line-strong: #b7c5c0;
+  --text: #17201d;
+  --muted: #61716b;
+  --soft: #7d8c86;
+  --accent: #148b71;
+  --accent-strong: #0f705b;
+  --accent-soft: #e5f6f1;
+  --warn: #f3b45b;
+  --danger: #c84843;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 46%, #edf2f0 100%);
+  color: var(--text);
+  font-family: Sora, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 32px 20px;
+}
+
+.workspace {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 6vw, 4.4rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.header p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.summary-panel {
+  display: grid;
+  min-width: 116px;
+  min-height: 96px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 28px rgba(23, 32, 29, 0.06);
+}
+
+.summary-panel span {
+  font-family: "DM Mono", monospace;
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.summary-panel small {
+  color: var(--soft);
+  font-family: "DM Mono", monospace;
+  text-transform: uppercase;
+}
+
+.success-bar {
+  margin-bottom: 14px;
+  border: 1px solid #addfd0;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  padding: 13px 16px;
+  font-size: 0.9rem;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 18px;
+  box-shadow: 0 16px 36px rgba(23, 32, 29, 0.06);
+}
+
+.drop-zone {
+  display: grid;
+  width: 100%;
+  min-height: 184px;
+  place-items: center;
+  gap: 8px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  background: #f9fbfa;
+  color: inherit;
+  cursor: pointer;
+  padding: 24px;
+  text-align: center;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.drop-zone:hover,
+.drop-zone.is-dragging {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.drop-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--accent);
+  font-family: "DM Mono", monospace;
+  font-size: 1.7rem;
+}
+
+.drop-zone strong {
+  font-size: 1rem;
+}
+
+.drop-zone span:last-child {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.name-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.name-input {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  background: #fbfdfc;
+  color: var(--text);
+  font-family: "DM Mono", monospace;
+  padding: 12px 13px;
+}
+
+.name-input:focus {
+  border-color: var(--accent);
+}
+
+.name-input::placeholder {
+  color: #9aa7a2;
+}
+
+.preview-badge {
+  max-width: 230px;
+  overflow: hidden;
+  border: 1px solid #addfd0;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+  padding: 12px 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  color: var(--soft);
+  font-family: "DM Mono", monospace;
+  font-size: 0.78rem;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.text-button,
+.icon-button,
+.primary-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.text-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 11px;
+}
+
+.text-button:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.text-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.file-list {
+  display: flex;
+  max-height: 386px;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: thin;
+}
+
+.file-item {
+  display: grid;
+  grid-template-columns: 38px 72px minmax(0, 1fr) 84px 34px;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #e1e8e5;
+  border-radius: 8px;
+  background: #fbfcfc;
+  padding: 10px 12px;
+}
+
+.file-num,
+.file-ext-badge,
+.file-new,
+.file-size {
+  font-family: "DM Mono", monospace;
+}
+
+.file-num {
+  color: var(--soft);
+  text-align: right;
+}
+
+.file-ext-badge {
+  overflow: hidden;
+  border: 1px solid #f4d5a0;
+  border-radius: 6px;
+  background: #fff7e8;
+  color: #946018;
+  font-size: 0.7rem;
+  padding: 5px 7px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-names {
+  min-width: 0;
+}
+
+.file-original,
+.file-new {
+  overflow: hidden;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-original {
+  margin-bottom: 3px;
+  color: var(--soft);
+  font-size: 0.78rem;
+  text-decoration: line-through;
+}
+
+.file-new {
+  color: #1b3d34;
+  font-size: 0.84rem;
+}
+
+.file-new.is-empty {
+  color: #8a9892;
+}
+
+.file-size {
+  color: var(--soft);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.icon-button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  background: transparent;
+  color: var(--soft);
+  font-family: "DM Mono", monospace;
+  font-size: 1rem;
+}
+
+.icon-button:hover {
+  background: #fff0ef;
+  color: var(--danger);
+}
+
+.empty-state {
+  display: grid;
+  min-height: 140px;
+  place-items: center;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--soft);
+}
+
+.action-bar {
+  position: sticky;
+  bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 14px 16px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 36px rgba(23, 32, 29, 0.1);
+}
+
+.action-bar p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.action-bar strong {
+  color: var(--accent);
+}
+
+.primary-button {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 18px;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  background: #d5ddda;
+  color: #7c8a84;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 22px 12px;
+  }
+
+  .header,
+  .tool-grid,
+  .action-bar {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary-panel {
+    min-height: 82px;
+  }
+
+  .name-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-badge {
+    max-width: none;
+  }
+
+  .file-item {
+    grid-template-columns: 32px minmax(54px, 64px) minmax(0, 1fr) 34px;
+  }
+
+  .file-size {
+    display: none;
+  }
+}
